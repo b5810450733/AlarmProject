@@ -19,6 +19,8 @@ public class WakeController {
     @FXML
     private Button go;
 
+
+
     protected String theAnswer ;
     protected String signForSet ;
 

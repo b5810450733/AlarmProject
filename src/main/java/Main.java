@@ -19,8 +19,12 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("View/MainAlarm.fxml"));
         primaryStage.setTitle("Alarm");
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root, 700, 500));
+        primaryStage.setScene(new Scene(root, 700, 550));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
+
+    // #b8e994
+    // #ff6b6b
 }
