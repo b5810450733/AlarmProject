@@ -276,81 +276,55 @@ public class MainAlarmController {
         }
     }
 
+    public int setOnOff(Alarm alarm, Label label) {
+        if (alarm.getStatus() == 1) {
+            label.setStyle("-fx-background-color: #b8e994");
+            alarm.setStatus(0);
+            return alarm.getStatus();
+        }
+        label.setStyle("-fx-background-color: #ff6b6b");
+        alarm.setStatus(1);
+        return alarm.getStatus();
+    }
 
     @FXML
     public void handleOnOff(ActionEvent event) {
-        Button buttonThatClick = (Button) event.getSource();
-        String button = buttonThatClick.getId();
-        switch (button) {
+        Button incomeMing = (Button) event.getSource();
+        String buttonName = incomeMing.getId();
+        int status;
+        switch (buttonName) {
             case "buttonC1":
-                if (alarm1.getStatus() == 1) {
-                    colorC1.setStyle("-fx-background-color: #b8e994");
-                    clock1 = hour + ":" + minute + ":00";
-                    alarm1.setStatus(0);
-                } else if (alarm1.getStatus() == 0) {
-                    alarm1.setStatus(1);
-                    colorC1.setStyle("-fx-background-color: #ff6b6b");
-                    clock1 = "";
-                }
+                status = setOnOff(alarm1, colorC1);
+                if (status == 0) clock1 = hour + ":" + minute + ":00";
+                if (status == 1) clock1 = "";
                 break;
             case "buttonC2":
-                if (alarm2.getStatus() == 1) {
-                    colorC2.setStyle("-fx-background-color: #b8e994");
-                    clock2 = hour + ":" + minute + ":00";
-                    alarm2.setStatus(0);
-                } else if (alarm2.getStatus() == 0) {
-                    alarm2.setStatus(1);
-                    colorC2.setStyle("-fx-background-color: #ff6b6b");
-                    clock2 = "";
-                }
+                status = setOnOff(alarm2, colorC2);
+                if (status == 0) clock2 = hour + ":" + minute + ":00";
+                if (status == 1) clock2 = "";
                 break;
             case "buttonC3":
-                if (alarm3.getStatus() == 1 && !textC3.getText().equals("-- : --")) {
-                    colorC3.setStyle("-fx-background-color: #b8e994");
-                    clock3 = hour + ":" + minute + ":00";
-                    alarm3.setStatus(0);
-                } else if (alarm3.getStatus() == 0) {
-                    alarm3.setStatus(1);
-                    colorC3.setStyle("-fx-background-color: #ff6b6b");
-                    clock3 = "";
-                }
+                status = setOnOff(alarm3, colorC3);
+                if (status == 0) clock3 = hour + ":" + minute + ":00";
+                if (status == 1) clock3 = "";
                 break;
             case "buttonC4":
-                if (alarm4.getStatus() == 1 && !textC4.getText().equals("-- : --")) {
-                    colorC4.setStyle("-fx-background-color: #b8e994");
-                    clock4 = hour + ":" + minute + ":00";
-                    alarm4.setStatus(0);
-                } else if (alarm4.getStatus() == 0) {
-                    alarm4.setStatus(1);
-                    colorC4.setStyle("-fx-background-color: #ff6b6b");
-                    clock4 = "";
-                }
+                status = setOnOff(alarm4, colorC4);
+                if (status == 0) clock4 = hour + ":" + minute + ":00";
+                if (status == 1) clock4 = "";
                 break;
             case "buttonC5":
-                if (alarm5.getStatus() == 1 && !textC5.getText().equals("-- : --")) {
-                    colorC5.setStyle("-fx-background-color: #b8e994");
-                    clock5 = hour + ":" + minute + ":00";
-                    alarm5.setStatus(0);
-                } else if (alarm5.getStatus() == 0) {
-                    alarm5.setStatus(1);
-                    colorC5.setStyle("-fx-background-color: #ff6b6b");
-                    clock5 = "";
-                }
+                status = setOnOff(alarm5, colorC5);
+                if (status == 0) clock5 = hour + ":" + minute + ":00";
+                if (status == 1) clock5 = "";
                 break;
             case "buttonC6":
-                if (alarm6.getStatus() == 1 && !textC6.getText().equals("-- : --")) {
-                    colorC6.setStyle("-fx-background-color: #b8e994");
-                    clock6 = hour + ":" + minute + ":00";
-                    alarm6.setStatus(0);
-                } else if (alarm6.getStatus() == 0) {
-                    alarm6.setStatus(1);
-                    colorC6.setStyle("-fx-background-color: #ff6b6b");
-                    clock6 = "";
-                }
+                status = setOnOff(alarm6, colorC6);
+                if (status == 0) clock6 = hour + ":" + minute + ":00";
+                if (status == 1) clock6 = "";
                 break;
         }
     }
-
 }
 
 
