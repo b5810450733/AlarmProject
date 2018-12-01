@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: #8fc9fb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.MainAlarmController">
+<AnchorPane fx:id="mainPane" prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: #8fc9fb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.MainAlarmController">
    <children>
       <Label fx:id="clockShow" alignment="CENTER" layoutX="37.0" layoutY="48.0" prefHeight="144.0" prefWidth="626.0" style="-fx-background-color: #ffd788;">
          <font>
@@ -50,7 +50,7 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Button fx:id="buttonC1" layoutX="146.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
+      <Button fx:id="buttonC1" disable="true" layoutX="146.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -91,27 +91,27 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Button fx:id="buttonC2" layoutX="146.0" layoutY="477.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
+      <Button fx:id="buttonC2" disable="true" layoutX="146.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="buttonC3" layoutX="368.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
+      <Button fx:id="buttonC3" disable="true" layoutX="368.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="buttonC4" layoutX="368.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
+      <Button fx:id="buttonC4" disable="true" layoutX="368.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="buttonC5" layoutX="589.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
+      <Button fx:id="buttonC5" disable="true" layoutX="589.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="buttonC6" layoutX="589.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
+      <Button fx:id="buttonC6" disable="true" layoutX="589.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleOnOff" prefHeight="27.0" prefWidth="71.0" text="ON / OFF">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

@@ -1,6 +1,6 @@
 package Model;
 
-public class Button {
+public class Button{
     public int status;
 
     public Button(int status) {
@@ -14,4 +14,6 @@ public class Button {
     public void setStatus(int status) {
         this.status = status;
     }
+
+
 }
