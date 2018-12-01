@@ -23,8 +23,4 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-
-
-    // #b8e994
-    // #ff6b6b
 }
