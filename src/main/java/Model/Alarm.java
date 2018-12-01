@@ -1,9 +1,9 @@
 package Model;
 
-public class Button{
+public class Alarm {
     public int status;
 
-    public Button(int status) {
+    public Alarm(int status) {
         this.status = status;
     }
 

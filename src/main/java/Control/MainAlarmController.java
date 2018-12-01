@@ -1,6 +1,7 @@
 package Control;
 
 
+import Model.Alarm;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,7 +18,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
@@ -117,20 +117,20 @@ public class MainAlarmController {
     protected String clock5 = "";
     protected String clock6 = "";
 
-    protected Model.Button b1;
-    protected Model.Button b2;
-    protected Model.Button b3;
-    protected Model.Button b4;
-    protected Model.Button b5;
-    protected Model.Button b6;
+    protected Alarm alarm1;
+    protected Alarm alarm2;
+    protected Alarm alarm3;
+    protected Alarm alarm4;
+    protected Alarm alarm5;
+    protected Alarm alarm6;
 
     public void initialize() {
-        b1 = new Model.Button(1);
-        b2 = new Model.Button(1);
-        b3 = new Model.Button(1);
-        b4 = new Model.Button(1);
-        b5 = new Model.Button(1);
-        b6 = new Model.Button(1);
+        alarm1 = new Alarm(1);
+        alarm2 = new Alarm(1);
+        alarm3 = new Alarm(1);
+        alarm4 = new Alarm(1);
+        alarm5 = new Alarm(1);
+        alarm6 = new Alarm(1);
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMM YYYY");
         datefield.setText(format.format(today));
@@ -283,67 +283,67 @@ public class MainAlarmController {
         String button = buttonThatClick.getId();
         switch (button) {
             case "buttonC1":
-                if (b1.getStatus() == 1) {
+                if (alarm1.getStatus() == 1) {
                     colorC1.setStyle("-fx-background-color: #b8e994");
                     clock1 = hour + ":" + minute + ":00";
-                    b1.setStatus(0);
-                } else if (b1.getStatus() == 0) {
-                    b1.setStatus(1);
+                    alarm1.setStatus(0);
+                } else if (alarm1.getStatus() == 0) {
+                    alarm1.setStatus(1);
                     colorC1.setStyle("-fx-background-color: #ff6b6b");
                     clock1 = "";
                 }
                 break;
             case "buttonC2":
-                if (b2.getStatus() == 1) {
+                if (alarm2.getStatus() == 1) {
                     colorC2.setStyle("-fx-background-color: #b8e994");
                     clock2 = hour + ":" + minute + ":00";
-                    b2.setStatus(0);
-                } else if (b2.getStatus() == 0) {
-                    b2.setStatus(1);
+                    alarm2.setStatus(0);
+                } else if (alarm2.getStatus() == 0) {
+                    alarm2.setStatus(1);
                     colorC2.setStyle("-fx-background-color: #ff6b6b");
                     clock2 = "";
                 }
                 break;
             case "buttonC3":
-                if (b3.getStatus() == 1 && !textC3.getText().equals("-- : --")) {
+                if (alarm3.getStatus() == 1 && !textC3.getText().equals("-- : --")) {
                     colorC3.setStyle("-fx-background-color: #b8e994");
                     clock3 = hour + ":" + minute + ":00";
-                    b3.setStatus(0);
-                } else if (b3.getStatus() == 0) {
-                    b3.setStatus(1);
+                    alarm3.setStatus(0);
+                } else if (alarm3.getStatus() == 0) {
+                    alarm3.setStatus(1);
                     colorC3.setStyle("-fx-background-color: #ff6b6b");
                     clock3 = "";
                 }
                 break;
             case "buttonC4":
-                if (b4.getStatus() == 1 && !textC4.getText().equals("-- : --")) {
+                if (alarm4.getStatus() == 1 && !textC4.getText().equals("-- : --")) {
                     colorC4.setStyle("-fx-background-color: #b8e994");
                     clock4 = hour + ":" + minute + ":00";
-                    b4.setStatus(0);
-                } else if (b4.getStatus() == 0) {
-                    b4.setStatus(1);
+                    alarm4.setStatus(0);
+                } else if (alarm4.getStatus() == 0) {
+                    alarm4.setStatus(1);
                     colorC4.setStyle("-fx-background-color: #ff6b6b");
                     clock4 = "";
                 }
                 break;
             case "buttonC5":
-                if (b5.getStatus() == 1 && !textC5.getText().equals("-- : --")) {
+                if (alarm5.getStatus() == 1 && !textC5.getText().equals("-- : --")) {
                     colorC5.setStyle("-fx-background-color: #b8e994");
                     clock5 = hour + ":" + minute + ":00";
-                    b5.setStatus(0);
-                } else if (b5.getStatus() == 0) {
-                    b5.setStatus(1);
+                    alarm5.setStatus(0);
+                } else if (alarm5.getStatus() == 0) {
+                    alarm5.setStatus(1);
                     colorC5.setStyle("-fx-background-color: #ff6b6b");
                     clock5 = "";
                 }
                 break;
             case "buttonC6":
-                if (b6.getStatus() == 1 && !textC6.getText().equals("-- : --")) {
+                if (alarm6.getStatus() == 1 && !textC6.getText().equals("-- : --")) {
                     colorC6.setStyle("-fx-background-color: #b8e994");
                     clock6 = hour + ":" + minute + ":00";
-                    b6.setStatus(0);
-                } else if (b6.getStatus() == 0) {
-                    b6.setStatus(1);
+                    alarm6.setStatus(0);
+                } else if (alarm6.getStatus() == 0) {
+                    alarm6.setStatus(1);
                     colorC6.setStyle("-fx-background-color: #ff6b6b");
                     clock6 = "";
                 }
