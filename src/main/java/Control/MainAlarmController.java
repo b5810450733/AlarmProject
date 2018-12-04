@@ -23,6 +23,7 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -117,20 +118,21 @@ public class MainAlarmController {
     protected String clock5 = "";
     protected String clock6 = "";
 
-    protected Alarm alarm1;
-    protected Alarm alarm2;
-    protected Alarm alarm3;
-    protected Alarm alarm4;
-    protected Alarm alarm5;
-    protected Alarm alarm6;
+//    protected Alarm alarm1 = new Alarm(1);
+//    protected Alarm alarm2 = new Alarm(1);
+//    protected Alarm alarm3 = new Alarm(1);
+//    protected Alarm alarm4 = new Alarm(1);
+//    protected Alarm alarm5 = new Alarm(1);
+//    protected Alarm alarm6 = new Alarm(1);
+
+    protected Alarm[] alarmsList = new Alarm[6];
 
     public void initialize() {
-        alarm1 = new Alarm(1);
-        alarm2 = new Alarm(1);
-        alarm3 = new Alarm(1);
-        alarm4 = new Alarm(1);
-        alarm5 = new Alarm(1);
-        alarm6 = new Alarm(1);
+        for (int i = 0; i < 6; i++) {
+            Alarm alarm = new Alarm(1);
+            alarmsList[i] = alarm;
+        }
+        System.out.println(Arrays.toString(alarmsList));
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMM YYYY");
         datefield.setText(format.format(today));
@@ -151,6 +153,7 @@ public class MainAlarmController {
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -294,32 +297,32 @@ public class MainAlarmController {
         int status;
         switch (buttonName) {
             case "buttonC1":
-                status = setOnOff(alarm1, colorC1);
+                status = setOnOff(alarmsList[0], colorC1);
                 if (status == 0) clock1 = hour + ":" + minute + ":00";
                 if (status == 1) clock1 = "";
                 break;
             case "buttonC2":
-                status = setOnOff(alarm2, colorC2);
+                status = setOnOff(alarmsList[1], colorC2);
                 if (status == 0) clock2 = hour + ":" + minute + ":00";
                 if (status == 1) clock2 = "";
                 break;
             case "buttonC3":
-                status = setOnOff(alarm3, colorC3);
+                status = setOnOff(alarmsList[2], colorC3);
                 if (status == 0) clock3 = hour + ":" + minute + ":00";
                 if (status == 1) clock3 = "";
                 break;
             case "buttonC4":
-                status = setOnOff(alarm4, colorC4);
+                status = setOnOff(alarmsList[3], colorC4);
                 if (status == 0) clock4 = hour + ":" + minute + ":00";
                 if (status == 1) clock4 = "";
                 break;
             case "buttonC5":
-                status = setOnOff(alarm5, colorC5);
+                status = setOnOff(alarmsList[4], colorC5);
                 if (status == 0) clock5 = hour + ":" + minute + ":00";
                 if (status == 1) clock5 = "";
                 break;
             case "buttonC6":
-                status = setOnOff(alarm6, colorC6);
+                status = setOnOff(alarmsList[5], colorC6);
                 if (status == 0) clock6 = hour + ":" + minute + ":00";
                 if (status == 1) clock6 = "";
                 break;
