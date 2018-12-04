@@ -60,7 +60,7 @@
          </font>
       </Label>
       <TextField fx:id="setClock" layoutX="181.0" layoutY="302.0" prefHeight="27.0" prefWidth="39.0" />
-      <Button fx:id="save" layoutX="518.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleSaveButton" style="-fx-background-color: #78e08f;" text="Save" />
+      <Button fx:id="save" defaultButton="true" layoutX="518.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleSaveButton" style="-fx-background-color: #78e08f;" text="Save" />
       <Label fx:id="colorC2" layoutX="31.0" layoutY="453.0" prefHeight="75.0" prefWidth="193.0" style="-fx-background-color: #f1f2f6;" />
       <Label fx:id="textC2" alignment="CENTER" layoutX="39.0" layoutY="473.0" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #ffeaa7;" text="-- : --">
          <font>
