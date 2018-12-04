@@ -2,6 +2,7 @@ package Control;
 
 
 import Model.Alarm;
+import animatefx.animation.Shake;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -176,6 +177,7 @@ public class MainAlarmController {
             controller.setParentController(this);
             controller.Question();
             stage.show();
+            new Shake(stage.getScene().getRoot()).play();
         } catch (IOException e1) {
             e1.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package Control;
 
+import animatefx.animation.FadeOut;
+import animatefx.animation.Shake;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,6 +64,7 @@ public class WakeController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION,"", ButtonType.OK);
             alert.setHeaderText("");
             if (answer.getText().equals(theAnswer)){
+                answer.setStyle("-fx-border-color: green");
                 alert.setContentText("CORRECT, the alarm will stop now. WakeUp!!!");
                 Optional optional = alert.showAndWait();
                 if (optional.get().equals(ButtonType.OK)){
@@ -71,16 +74,21 @@ public class WakeController {
                     stage.close();
                 }
             }else {
-                alert.setAlertType(Alert.AlertType.WARNING);
-                alert.setContentText("WRONG, Rub the sleep your my eyes and try again.");
-                alert.show();
+                wrongAnswer("WRONG, Rub the sleep your my eyes and try again.");
             }
         }catch (NumberFormatException exception){
-            Alert alert = new Alert(Alert.AlertType.WARNING,"Wrong input, please fill positive integer.");
-            alert.setHeaderText("");
-            alert.show();
-            System.out.println("Wrong input");
+            wrongAnswer("Wrong input, please fill positive integer.");
         }
+    }
+
+    public void wrongAnswer(String error){
+        new Shake(answer.getScene().getRoot()).play();
+        answer.setStyle("-fx-border-color: red");
+        Alert alert = new Alert(Alert.AlertType.WARNING,error);
+        alert.setHeaderText("");
+        alert.show();
+        System.out.println("Wrong input");
+        answer.clear();
     }
 
 

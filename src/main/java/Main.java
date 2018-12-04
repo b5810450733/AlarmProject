@@ -1,3 +1,6 @@
+import animatefx.animation.BounceIn;
+import animatefx.animation.FadeIn;
+import animatefx.animation.Pulse;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -22,5 +25,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 700, 550));
         primaryStage.setResizable(false);
         primaryStage.show();
+        new Pulse(primaryStage.getScene().getRoot()).play();
     }
 }
