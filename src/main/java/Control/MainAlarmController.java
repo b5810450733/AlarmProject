@@ -6,6 +6,8 @@ import animatefx.animation.Shake;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,73 +40,29 @@ public class MainAlarmController {
     protected Button exit;
 
     @FXML
-    protected TextField setHour;
+    protected ComboBox<String> setHour;
 
     @FXML
-    protected TextField setMinute;
+    protected ComboBox<String> setMinute;
 
     @FXML
     protected AnchorPane mainPane;
 
     @FXML
-    protected Label colorC1;
+    protected Label colorC1,colorC2,colorC3,colorC4,colorC5,colorC6;
 
     @FXML
-    protected Label textC1;
+    protected Label textC1,textC2,textC3,textC4,textC5,textC6;
 
     @FXML
-    protected Button buttonC1;
+    protected Button buttonC1,buttonC2,buttonC3,buttonC4,buttonC5,buttonC6;
 
     @FXML
-    protected TextField setClock;
+    protected ComboBox<String> setClock;
 
     @FXML
     protected Button save;
 
-    @FXML
-    protected Label colorC2;
-
-    @FXML
-    protected Label textC2;
-
-    @FXML
-    protected Label colorC3;
-
-    @FXML
-    protected Label textC3;
-
-    @FXML
-    protected Label colorC4;
-
-    @FXML
-    protected Label textC4;
-
-    @FXML
-    protected Label colorC5;
-
-    @FXML
-    protected Label textC5;
-
-    @FXML
-    protected Label textC6;
-
-    @FXML
-    protected Label colorC6;
-
-    @FXML
-    protected Button buttonC2;
-
-    @FXML
-    protected Button buttonC3;
-
-    @FXML
-    protected Button buttonC4;
-
-    @FXML
-    protected Button buttonC5;
-
-    @FXML
-    protected Button buttonC6;
 
     protected MediaPlayer player;
 
@@ -112,27 +70,28 @@ public class MainAlarmController {
     protected String hour;
     protected String minute;
 
-    protected String clock1 = "";
-    protected String clock2 = "";
-    protected String clock3 = "";
-    protected String clock4 = "";
-    protected String clock5 = "";
-    protected String clock6 = "";
-
-//    protected Alarm alarm1 = new Alarm(1);
-//    protected Alarm alarm2 = new Alarm(1);
-//    protected Alarm alarm3 = new Alarm(1);
-//    protected Alarm alarm4 = new Alarm(1);
-//    protected Alarm alarm5 = new Alarm(1);
-//    protected Alarm alarm6 = new Alarm(1);
-
     protected Alarm[] alarmsList = new Alarm[6];
 
+    protected ObservableList<String> alarmNumber = FXCollections.observableArrayList();
+    protected ObservableList<String> hourNumber = FXCollections.observableArrayList();
+    protected ObservableList<String> minuteNumber = FXCollections.observableArrayList();
+
     public void initialize() {
+        setClearComboValue();
         for (int i = 0; i < 6; i++) {
-            Alarm alarm = new Alarm(1);
+            Alarm alarm = new Alarm(1,"");
             alarmsList[i] = alarm;
+            alarmNumber.add(i+1+"");
         }
+        for (int i = 0; i < 24; i++) {
+            hourNumber.add(i+"");
+        }
+        for (int i = 0; i < 60; i++) {
+            minuteNumber.add(i+"");
+        }
+        setClock.setItems(alarmNumber);
+        setHour.setItems(hourNumber);
+        setMinute.setItems(minuteNumber);
         System.out.println(Arrays.toString(alarmsList));
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMM YYYY");
@@ -145,9 +104,11 @@ public class MainAlarmController {
             System.out.println(time);
             clockShow.setText(time);
             //datefield.setText(format.format(today)); ถ้าจะเปิดข้ามวันต้องมา setText ในนี้เพื่อให้อัพเดทเวลา
-            if (time.equals(clock1) || time.equals(clock2) || time.equals(clock3) || time.equals(clock4) || time.equals(clock5) || time.equals(clock6)) {
-                exit.setDisable(true);
-                nowWake();
+            for (Alarm alarm : alarmsList) {
+                if (alarm.getTimeSet().equals(time)){
+                    exit.setDisable(true);
+                    nowWake();
+                }
             }
         }),
                 new KeyFrame(Duration.seconds(1))
@@ -205,65 +166,65 @@ public class MainAlarmController {
 
 
     public void handleSaveButton(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.WARNING, "Please check the field information.", ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please complete the information field.", ButtonType.OK);
         alert.setHeaderText("");
         if (event.getSource().equals(save)) {
             try {
-                if (!setClock.getText().equals("") && !setHour.getText().equals("") && !setMinute.getText().equals("")) {
-                    if ((Integer.parseInt(setClock.getText()) >= 1) && (Integer.parseInt(setClock.getText()) <= 6) && (Integer.parseInt(setHour.getText()) >= 0)
-                            && (Integer.parseInt(setHour.getText()) <= 23) && (Integer.parseInt(setMinute.getText()) >= 0) && (Integer.parseInt(setClock.getText()) <= 60)) {
-                        clockNumber = setClock.getText();
-                        hour = setHour.getText();
-                        minute = setMinute.getText();
-                        setClockShow(hour, minute);
-                        switch (clockNumber) {
-                            case "1":
-                                textC1.setText(hour + " : " + minute);
-                                colorC1.setStyle("-fx-background-color: #ff6b6b");
-                                buttonC1.setDisable(false);
-                                break;
-                            case "2":
-                                textC2.setText(hour + " : " + minute);
-                                colorC2.setStyle("-fx-background-color: #ff6b6b");
-                                buttonC2.setDisable(false);
-                                break;
-                            case "3":
-                                textC3.setText(hour + " : " + minute);
-                                colorC3.setStyle("-fx-background-color: #ff6b6b");
-                                buttonC3.setDisable(false);
-                                break;
-                            case "4":
-                                textC4.setText(hour + " : " + minute);
-                                colorC4.setStyle("-fx-background-color: #ff6b6b");
-                                buttonC4.setDisable(false);
-                                break;
-                            case "5":
-                                textC5.setText(hour + " : " + minute);
-                                colorC5.setStyle("-fx-background-color: #ff6b6b");
-                                buttonC5.setDisable(false);
-                                break;
-                            case "6":
-                                textC6.setText(hour + " : " + minute);
-                                colorC6.setStyle("-fx-background-color: #ff6b6b");
-                                buttonC6.setDisable(false);
-                                break;
-                            default:
-                                return;
-                        }
-                    } else {
-                        alert.show();
+                if (!setClock.getValue().equals("-") && !setHour.getValue().equals("-") && !setMinute.getValue().equals("-")){
+                    clockNumber = setClock.getValue();
+                    hour = setHour.getValue();
+                    minute = setMinute.getValue();
+                    setClockShow(hour, minute);
+                    switch (clockNumber) {
+                        case "1":
+                            textC1.setText(hour + " : " + minute);
+                            colorC1.setStyle("-fx-background-color: #ff6b6b");
+                            buttonC1.setDisable(false);
+                            break;
+                        case "2":
+                            textC2.setText(hour + " : " + minute);
+                            colorC2.setStyle("-fx-background-color: #ff6b6b");
+                            buttonC2.setDisable(false);
+                            break;
+                        case "3":
+                            textC3.setText(hour + " : " + minute);
+                            colorC3.setStyle("-fx-background-color: #ff6b6b");
+                            buttonC3.setDisable(false);
+                            break;
+                        case "4":
+                            textC4.setText(hour + " : " + minute);
+                            colorC4.setStyle("-fx-background-color: #ff6b6b");
+                            buttonC4.setDisable(false);
+                            break;
+                        case "5":
+                            textC5.setText(hour + " : " + minute);
+                            colorC5.setStyle("-fx-background-color: #ff6b6b");
+                            buttonC5.setDisable(false);
+                            break;
+                        case "6":
+                            textC6.setText(hour + " : " + minute);
+                            colorC6.setStyle("-fx-background-color: #ff6b6b");
+                            buttonC6.setDisable(false);
+                            break;
+                        default:
+                            return;
                     }
                 } else {
                     alert.show();
+                    return;
                 }
             } catch (NumberFormatException e) {
                 alert.show();
                 return;
             }
         }
-        setClock.clear();
-        setHour.clear();
-        setMinute.clear();
+        setClearComboValue();
+    }
+
+    public void setClearComboValue(){
+        setClock.setValue("-");
+        setHour.setValue("-");
+        setMinute.setValue("-");
     }
 
     public void setClockShow(String h, String m) {
@@ -292,43 +253,54 @@ public class MainAlarmController {
         return alarm.getStatus();
     }
 
+    public String splitToSet(String clock){
+        String turn = "";
+        String[] split = clock.split(" ");
+        for (String s : split) {
+            turn += s;
+        }
+        return turn;
+    }
+
     @FXML
     public void handleOnOff(ActionEvent event) {
         Button incomeMing = (Button) event.getSource();
         String buttonName = incomeMing.getId();
         int status;
+
         switch (buttonName) {
             case "buttonC1":
                 status = setOnOff(alarmsList[0], colorC1);
-                if (status == 0) clock1 = hour + ":" + minute + ":00";
-                if (status == 1) clock1 = "";
+                if (status == 0) alarmsList[0].setTimeSet(splitToSet(textC1.getText())+ ":00");
+                if (status == 1) alarmsList[0].setTimeSet("");
                 break;
             case "buttonC2":
                 status = setOnOff(alarmsList[1], colorC2);
-                if (status == 0) clock2 = hour + ":" + minute + ":00";
-                if (status == 1) clock2 = "";
+                if (status == 0) alarmsList[1].setTimeSet(splitToSet(textC2.getText()) + ":00");
+                if (status == 1) alarmsList[1].setTimeSet("");
                 break;
             case "buttonC3":
                 status = setOnOff(alarmsList[2], colorC3);
-                if (status == 0) clock3 = hour + ":" + minute + ":00";
-                if (status == 1) clock3 = "";
+                if (status == 0) alarmsList[2].setTimeSet(splitToSet(textC3.getText()) + ":00");
+                if (status == 1) alarmsList[2].setTimeSet("");
                 break;
             case "buttonC4":
                 status = setOnOff(alarmsList[3], colorC4);
-                if (status == 0) clock4 = hour + ":" + minute + ":00";
-                if (status == 1) clock4 = "";
+                if (status == 0) alarmsList[3].setTimeSet(splitToSet(textC4.getText())+ ":00");
+                if (status == 1) alarmsList[3].setTimeSet("");
                 break;
             case "buttonC5":
                 status = setOnOff(alarmsList[4], colorC5);
-                if (status == 0) clock5 = hour + ":" + minute + ":00";
-                if (status == 1) clock5 = "";
+                if (status == 0) alarmsList[4].setTimeSet(splitToSet(textC5.getText()) + ":00");
+                if (status == 1) alarmsList[4].setTimeSet("");
                 break;
             case "buttonC6":
                 status = setOnOff(alarmsList[5], colorC6);
-                if (status == 0) clock6 = hour + ":" + minute + ":00";
-                if (status == 1) clock6 = "";
+                if (status == 0) alarmsList[5].setTimeSet(splitToSet(textC6.getText()) + ":00");
+                if (status == 1) alarmsList[5].setTimeSet("");
                 break;
         }
+        System.out.println(Arrays.toString(alarmsList));
     }
 }
 
